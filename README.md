@@ -1,117 +1,117 @@
-# Todo App
+# Simple Task Manager
 
-## Overview
+## What's This?
 
-This Todo App is a simple task management program written in Bash. It allows you to create, update, delete, mark, and search tasks using a text-based menu interface.
+Hey there! This is a basic task manager that we've built using Bash. It's pretty straightforward and lets you add, update, delete, mark, and search tasks. All of this is done through a user-friendly text menu.
 
-## Design Choices
+## How We Built It
 
-### Data Storage
-- **File**: The tasks are stored in a plain text file called `todo.txt`.
-- **Format**: Each task is stored on a single line in the format: `id|title|description|due_date|completed`.
-  - `id`: Integer representing the task ID.
-  - `title`: Short description of the task.
-  - `description`: Detailed description of the task.
-  - `due_date`: Date by which the task should be completed, formatted as `YYYY-MM-DD`.
-  - `completed`: Either `Y` (yes) or `N` (no), indicating whether the task is completed.
+### Storing Tasks
+- **Where?**: We keep all the tasks in a simple text file named `todo.txt`.
+- **How?**: Each task gets its own line in the file, and we store it like this: `id|title|description|due_date|completed`.
+  - `id`: A number for the task.
+  - `title`: A brief summary of the task.
+  - `description`: More details about the task.
+  - `due_date`: When the task needs to be done by, in `YYYY-MM-DD` format.
+  - `completed`: This is either `Y` (yes) or `N` (no), depending on whether the task is done.
 
-### Code Organization
-The script is divided into several functions, each responsible for a specific task management operation:
+### Organizing the Code
+We've split the script into several functions, each one handling a different part of managing tasks:
 
-- `display_menu()`: Displays the main menu options.
-- `add_task()`: Adds a new task.
-- `display_tasks()`: Displays all tasks.
-- `update_task()`: Updates an existing task.
-- `delete_task()`: Deletes a task.
-- `mark_task_completed()`: Marks a task as completed.
-- `show_task_info()`: Displays detailed information about a specific task.
-- `list_tasks_by_day()`: Lists tasks for a specific day.
-- `search_task_by_title()`: Searches for tasks by title.
+- `display_menu()`: Shows the main menu.
+- `add_task()`: Lets you add a new task.
+- `display_tasks()`: Shows all the tasks.
+- `update_task()`: Lets you change a task.
+- `delete_task()`: Removes a task.
+- `mark_task_completed()`: Marks a task as done.
+- `show_task_info()`: Gives more info about a task.
+- `list_tasks_by_day()`: Shows tasks for a certain day.
+- `search_task_by_title()`: Finds tasks by their title.
 
-The `main()` function is the entry point of the script and runs an infinite loop to display the menu and execute the corresponding function based on the user's choice.
+The `main()` function is where everything starts. It keeps showing the menu and running the right function based on what you choose.
 
-## Running the Program
+## How to Use It
 
 ### 1. Save the Script
-Copy the script into a file, for example, `todo.sh`. Make sure to include the `#!/bin/bash` shebang at the top of the file.
+First, copy the script into a file. You could name it `todo.sh`, for example. Don't forget to put `#!/bin/bash` at the top of the file.
 
 ### 2. Make the Script Executable
-Open a terminal and navigate to the directory where you saved `todo.sh`. Run the following command to make the script executable:
+Open up a terminal and go to the directory where `todo.sh` is. Then, run this command to make the script executable:
 
 ```bash
 chmod +x todo.sh
 ```
 
 ### 3. Run the Script
-In the terminal, run the script by typing:
+In the terminal, you can run the script like this:
 
 ```bash
 ./todo.sh
 ```
 
-### 4. Using the Menu
-You will see a menu with options to create, update, delete, and manage tasks. Enter the number corresponding to the operation you want to perform (e.g., `1` to create a new task).
+### 4. Use the Menu
+You'll see a menu with options for creating, updating, deleting, and managing tasks. Just type the number for what you want to do (like `1` to create a new task).
 
-## Explanation of Operations
+## What Each Operation Does
 
 ### 1. Add Task
-- Prompts the user for the task title, description, due date, and completion status.
-- Validates the title and due date.
-- Generates a new task ID based on the number of lines in `todo.txt`.
-- Appends the new task to `todo.txt`.
+- Asks you for the task title, description, due date, and whether it's completed.
+- Checks the title and due date to make sure they're okay.
+- Makes a new task ID based on how many lines are in `todo.txt`.
+- Adds the new task to `todo.txt`.
 
 ### 2. Display Tasks
-- Checks if `todo.txt` exists.
-- Uses `awk` to format and print each task stored in `todo.txt`.
+- Checks if `todo.txt` is there.
+- Uses `awk` to format and show each task in `todo.txt`.
 
 ### 3. Update Task
-- Prompts the user for the task ID to update.
-- If the task exists, displays the current task details.
-- Allows the user to select which field to update (title, description, due date, or completion status).
-- Validates the new input and updates the task using `sed`.
+- Asks you for the task ID to update.
+- If the task is there, it shows the current task details.
+- Lets you pick which field to update (title, description, due date, or whether it's completed).
+- Checks the new input and updates the task using `sed`.
 
 ### 4. Delete Task
-- Prompts the user for the task ID to delete.
-- If the task exists, deletes the line corresponding to the task ID using `sed`.
+- Asks you for the task ID to delete.
+- If the task is there, it removes the line for the task ID using `sed`.
 
 ### 5. Mark Task Completed
-- Prompts the user for the task ID to mark as completed.
-- If the task exists, updates the completion status to `Y` using `sed`.
+- Asks you for the task ID to mark as completed.
+- If the task is there, it changes the completion status to `Y` using `sed`.
 
 ### 6. Show Task Info
-- Prompts the user for the task ID to show.
-- If the task exists, displays the task details using `grep` and `cut`.
+- Asks you for the task ID to show.
+- If the task is there, it shows the task details using `grep` and `cut`.
 
 ### 7. List Tasks by Day
-- Prompts the user for a specific date.
-- Displays completed and uncompleted tasks for the specified date using `grep` and `awk`.
+- Asks you for a specific date.
+- Shows tasks that are done and not done for that date using `grep` and `awk`.
 
 ### 8. Search Task by Title
-- Prompts the user for a title to search.
-- Displays tasks with titles matching the search term using `grep` and `awk`.
+- Asks you for a title to search for.
+- Shows tasks with titles that match what you searched for using `grep` and `awk`.
 
 ## Example Usage
 
 ### Add a Task
-- Select option `1` from the menu.
-- Enter the task title, description, due date, and completion status.
-- The task is added to `todo.txt` and assigned a unique ID.
+- Pick `1` from the menu.
+- Type in the task title, description, due date, and whether it's completed.
+- The task gets added to `todo.txt` and gets a unique ID.
 
 ### Display All Tasks
-- Select option `2` from the menu.
-- All tasks are listed with their details.
+- Pick `2` from the menu.
+- All the tasks get listed with their details.
 
 ### Update a Task
-- Select option `3` from the menu.
-- Enter the ID of the task you want to update.
-- Select the field to update and provide the new value.
-- The task is updated in `todo.txt`.
+- Pick `3` from the menu.
+- Type in the ID of the task you want to update.
+- Pick the field to update and type in the new value.
+- The task gets updated in `todo.txt`.
 
 ### Delete a Task
-- Select option `4` from the menu.
-- Enter the ID of the task you want to delete.
-- The task is removed from `todo.txt`.
+- Pick `4` from the menu.
+- Type in the ID of the task you want to delete.
+- The task gets removed from `todo.txt`.
 
-## Credits
+## Who Made This?
 
-This script was developed by Achraf Ikisse and Ilyas Himit.
+This script was made by Achraf Ikisse and Ilyas Himit. We're both university students who love coding and learning new things. We hope you find this script useful! 😊
